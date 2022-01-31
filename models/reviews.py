@@ -15,7 +15,7 @@ class ReviewModel(db.Model):
     review_type = db.Column(db.String(50))
     loan_type = db.Column(db.String(50))
     author_name = db.Column(db.String(50), db.ForeignKey('author.name'), nullable=False)
-    vendor_name = db.Column(db.String(50), db.ForeignKey('vendor.name', nullable=False))
+    vendor_name = db.Column(db.String(50), db.ForeignKey('vendor.name'), nullable=False)
 
 
     def __init__(self, title, content, rating, review_type, loan_type, author_name, vendor_name):
