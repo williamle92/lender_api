@@ -2,7 +2,9 @@ from flask import Flask
 from flask_migrate import Migrate
 from config import Config
 from db import db
-from flask_restful import Api,Resource
+from flask_restful import Api
+
+from resources.vendor import Vendor, VendorList
 
 
 app = Flask(__name__)
@@ -19,7 +21,8 @@ def home():
 
 
 # Adding the routes to our API
-
+api.add_resource(Vendor, "/vendor/<id>", "/vendor")
+api.add_resource(VendorList, "/vendors")
 
 
 

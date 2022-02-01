@@ -1,4 +1,3 @@
-from typing_extensions import Required
 from flask_restful import Resource, reqparse
 from models.vendor import VendorModel
 
