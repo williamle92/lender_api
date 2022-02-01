@@ -13,9 +13,18 @@ def test_empty_string():
     v = VendorModel("")
     assert v.name == ""
 
+
 def test_no_instantiation():
     with pytest.raises(TypeError):
         test = VendorModel()
         test
 
+
+def test_vendor_review():
+    review = ReviewModel("title", "test", 5, "review type", "loan type", "johnsmith", "Test Lender")
+    test_vendor = VendorModel("Test Lender")
+    test_vendor.reviews.append(review)
+
+    assert test_vendor.reviews 
     
+
