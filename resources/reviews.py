@@ -29,3 +29,41 @@ class ReviewResource(Resource):
             return {"Message": "The author in the request does not exist, please try again"}
         if not vendor_exist:
             return {"Message": "The vendor in the request does not exist, please try again"}
+        review = ReviewModel(**data)
+        try:
+            review.save_to_db()
+        except:
+            return {"Message": "An error occurred while processing the request, please try again"}
+        return review.json()
+
+
+    def delete(self, id):
+        review = ReviewModel.find_by_id(id)
+        if not review:
+            return {"Message": "The review could not be found, please try again!"}
+        review.delete_from_db()
+        return {"Message": "Review has been deleted from the database"}
+
+    
+    def put(self, id):
+        data = ReviewResource.parser.parse_args()
+        review = ReviewModel.find_by_id(id)
+
+        if not review:
+            review = ReviewModel(**data)
+        else:
+            review.title = data["title"]
+            review.content = data['content']
+            review.rating = data["rating"]
+            review.review_type= data["review_type"]
+            review.loan_type = data["loan_type"]
+            review.author_name = data["author_name"]
+            review.vendor_name = data["vendor_name"]
+
+        review.save_to_db()
+        return review.json()
+
+
+class Reviews(Resource):
+    def get(self):
+        return {"type": "reviews", "data":[review.json() for review in ReviewModel.query.all()]}
