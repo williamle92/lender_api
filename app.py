@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 from config import Config
 from db import db
 from flask_restful import Api
+from resources.reviews import ReviewResource, Reviews
 from resources.vendor import Vendor, VendorList
 
 
@@ -22,6 +23,8 @@ def home():
 # Adding the routes to our API
 api.add_resource(Vendor, "/vendor/<id>", "/vendor")
 api.add_resource(VendorList, "/vendors")
+api.add_resource(ReviewResource, "/review/<id>", "/review")
+api.add_resource(Reviews, "/reviews")
 
 
 

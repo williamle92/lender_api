@@ -1,3 +1,4 @@
+from enum import unique
 from db import db
 from sqlalchemy.ext.hybrid import hybrid_property
 
@@ -9,7 +10,7 @@ class VendorModel(db.Model):
 
     __tablename__ = "vendor"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False, unique=True)
     reviews = db.relationship('ReviewModel', backref="vendormodel", lazy="dynamic")
 
 
