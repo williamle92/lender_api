@@ -4,7 +4,7 @@ from models.author import AuthorModel
 from models.reviews import ReviewModel
 from models.vendor import VendorModel
 
-
+# run using command python -m (for module) pytest
 def test_NewAuthor():
     '''
     GIVEN a Author model
