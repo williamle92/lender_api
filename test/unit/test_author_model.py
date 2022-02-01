@@ -15,8 +15,7 @@ def test_NewAuthor():
     test_author = AuthorModel("JohnSmith90", "Irvine")
     assert test_author.name == "JohnSmith90" and test_author.city == "Irvine"
     
-    
-    
+
 
 def test_author_no_name():
     with pytest.raises(TypeError):
