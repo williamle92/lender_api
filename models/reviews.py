@@ -29,7 +29,7 @@ class ReviewModel(db.Model):
 
 
     def json(self):
-        return {"title": self.title, "loan type": self.loan_type, "review type": self.review_type, "rating": self.rating, "author name": self.author_name, "vendor name": self.vendor_name, "content": self.content}
+        return {"type": "review", "title": self.title, "loan type": self.loan_type, "review type": self.review_type, "rating": self.rating, "author name": self.author_name, "vendor name": self.vendor_name, "content": self.content}
 
     def save_to_db(self):
         db.session.add(self)

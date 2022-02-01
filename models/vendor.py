@@ -34,3 +34,8 @@ class VendorModel(db.Model):
         if name:
             return VendorModel.query.filter_by(name=name).first()
         return VendorModel.query.filter_by(id=id).first()
+
+
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()

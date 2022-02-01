@@ -18,6 +18,7 @@ def home():
 
 
 
+# Adding the routes to our API
 
 
 
