@@ -5,6 +5,7 @@ from models.author import AuthorModel
 
 
 class ReviewResource(Resource):
+    # adds required arguments in JSON request and parses the request
     parser = reqparse.RequestParser()
     parser.add_argument("title", type=str, required=True, help="Must contain key (title) and value as a string in JSON request")
     parser.add_argument('content', type=str, required=True, help="Must contain key (content) and value as a string in JSON request")
@@ -16,12 +17,14 @@ class ReviewResource(Resource):
     parser.add_argument("date_posted", type=str, required=True, help="Must contain key(date_posted) and value as a string in JSON request")
 
     def get(self, id):
+        # check to see if the review exist
         review = ReviewModel.find_by_id(id)
         if not review:
             return {"Message": "The review does not exist, please try again."}, 404
         return review.json(), 200
 
     def post(self):
+        # Parse the data from request
         data = ReviewResource.parser.parse_args()
         author_exist = AuthorModel.find_by_username(data["author_name"])
         lender_exist = LenderModel.find_by_id(id=None, name=data['lender_name'])

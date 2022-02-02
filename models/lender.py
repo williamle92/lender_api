@@ -33,10 +33,12 @@ class LenderModel(db.Model):
 
     # Decorator allows methods to be executed on class without creating an instance
     @classmethod
-    def find_by_id(self, id, name=None):
-        if name:
-            return LenderModel.query.filter_by(name=name).first()
+    def find_by_id(self, id):
         return LenderModel.query.filter_by(id=id).first()
+
+    @classmethod
+    def find_by_name(self, name):
+        return LenderModel.query.filter_by(name=name).first()
 
     def delete_from_db(self):
         db.session.delete(self)
