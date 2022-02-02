@@ -6,7 +6,7 @@ from db import db
 from flask_restful import Api
 from resources.author import AuthorList, AuthorResource
 from resources.reviews import ReviewResource, Reviews
-from resources.lender import Vendor, VendorList
+from resources.lender import LenderResource, LenderList
 
 # Instantiate Flask app
 app = Flask(__name__)
@@ -32,8 +32,7 @@ errors = {
     },
     "NotFound": {
         "status": 404,
-        "message": "Not Found: The requested URL was NOT FOUND on the server. Please try again.",
-        "extra": "Make sure the request follows the following format: http://127.0.0.1:5000/vendor/<id> "
+        "message": "Not Found: The requested URL was NOT FOUND on the server. Please try again."
     },
     "InternalServerError":{
         "message": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request.",
@@ -62,12 +61,12 @@ def home():
 
 
 # Adding the routes to our API
-api.add_resource(Vendor, "reviews/vendor/<id>", "reviews/vendor")
-api.add_resource(VendorList, "reviews/vendors")
+api.add_resource(LenderResource, "/reviews/lender/<id>", "/reviews/lender")
+api.add_resource(LenderList, "/reviews/lenders")
 api.add_resource(ReviewResource, "/review/<id>", "/review")
 api.add_resource(Reviews, "/reviews")
-api.add_resource(AuthorResource, "reviews/author/<name>", "reviews/author")
-api.add_resource(AuthorList, "reviews/authors")
+api.add_resource(AuthorResource, "/reviews/author/<name>", "/reviews/author")
+api.add_resource(AuthorList, "/reviews/authors")
 
 
 if __name__ == "__main__":
