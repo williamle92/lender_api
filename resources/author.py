@@ -1,6 +1,5 @@
 from flask import jsonify
 from flask_restful import Resource, reqparse
-
 from models.author import AuthorModel
 
 
@@ -13,7 +12,7 @@ class AuthorResource(Resource):
     def get(self, name):
         author = AuthorModel.find_by_username(name=name)
         if not author:
-            return jsonify({"Message": "The author name does not exist, please try again using a different name"}),404
+            return {"Message": "The author name does not exist, please try again using a different name"},404
         return author.json()
 
     def post(self):
@@ -23,14 +22,14 @@ class AuthorResource(Resource):
         try:
             author.save_to_db()
         except:
-            return jsonify({"Message": "An error occured while trying to process the request"}), 500
+            return {"Message": "An error occured while trying to process the request"}, 500
         return author.json()
 
     def delete(self, name):
         author = AuthorModel.find_by_username(name=name)
         if author:
             author.delete_from_db()
-        return jsonify({"Message": "Item deleted"})
+        return {"Message": "Item deleted"}
 
     def put(self, name):
         data = AuthorResource.parser.parse_args()
