@@ -5,12 +5,8 @@ from models.vendor import VendorModel
 
 class Vendor(Resource):
     parser = reqparse.RequestParser()
-    
-    parser.add_argument("name",type=str, required=True, help="Must contain a vendor name (str) in request ")
-    
-
-
-
+    parser.add_argument("name",type=str, required=True, help="Must contain key (name) and value as a string in JSON request")
+       
     def get(self, id):
         vendor = VendorModel.find_by_id(id)
         if not vendor:

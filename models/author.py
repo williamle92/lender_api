@@ -33,6 +33,10 @@ class AuthorModel(db.Model):
     @classmethod
     def find_by_username(self, name):
         return AuthorModel.query.filter_by(name=name).first()
+
+    @classmethod
+    def find_by_id(self, id):
+        return AuthorModel.query.filter_by(id=id).first()
         
     def __repr__(self):
         return f"Author: {self.name}, {self.city}"

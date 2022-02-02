@@ -30,7 +30,7 @@ class ReviewModel(db.Model):
         self.vendor_name = vendor_name
         self.date_posted =date_posted
 
-
+    # Method that returns a JSON format of the instance
     def json(self):
         return {"type": "review","date posted":self.date_posted ,"title": self.title, "loan type": self.loan_type, "review type": self.review_type, "rating": self.rating, "author name": self.author_name, "vendor name": self.vendor_name, "content": self.content}
 

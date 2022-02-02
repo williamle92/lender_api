@@ -13,6 +13,7 @@ class ReviewResource(Resource):
     parser.add_argument("loan_type", type=str, required=True, help="Must contain key (loan_type) and value as a string in JSON request")
     parser.add_argument("author_name", type=str, required=True, help="Must contain key (author_name) and value as a string in JSON request")
     parser.add_argument('vendor_name', type=str, required=True, help="Must contain key(vendor_name) and value as a string in JSON request")
+    parser.add_argument("date_posted", type=str, required=True, help="Must contain key(date_posted) and value as a string in JSON request")
 
     def get(self, id):
         review = ReviewModel.find_by_id(id)
