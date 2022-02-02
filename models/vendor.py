@@ -1,4 +1,4 @@
-from enum import unique
+
 from db import db
 from sqlalchemy.ext.hybrid import hybrid_property
 
