@@ -1,3 +1,4 @@
+from datetime import datetime
 from db import db
 
 
@@ -14,11 +15,12 @@ class ReviewModel(db.Model):
     rating =db.Column(db.Integer, nullable=False)
     review_type = db.Column(db.String(50))
     loan_type = db.Column(db.String(50))
+    date_posted = db.Column(db.String(30))
     author_name = db.Column(db.String(50), db.ForeignKey('author.name'), nullable=False)
     vendor_name = db.Column(db.String(50), db.ForeignKey('vendor.name'), nullable=False)
 
 
-    def __init__(self, title, content, rating, review_type, loan_type, author_name, vendor_name):
+    def __init__(self, title, content, rating, review_type, loan_type, author_name, vendor_name, date_posted):
         self.title = title
         self.content = content
         self.rating = rating
@@ -26,10 +28,11 @@ class ReviewModel(db.Model):
         self.loan_type = loan_type
         self.author_name = author_name
         self.vendor_name = vendor_name
+        self.date_posted =date_posted
 
 
     def json(self):
-        return {"type": "review", "title": self.title, "loan type": self.loan_type, "review type": self.review_type, "rating": self.rating, "author name": self.author_name, "vendor name": self.vendor_name, "content": self.content}
+        return {"type": "review","date posted":self.date_posted ,"title": self.title, "loan type": self.loan_type, "review type": self.review_type, "rating": self.rating, "author name": self.author_name, "vendor name": self.vendor_name, "content": self.content}
 
     def save_to_db(self):
         db.session.add(self)

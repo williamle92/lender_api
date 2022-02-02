@@ -1,5 +1,5 @@
 from xml.dom.pulldom import ErrorHandler
-from flask import Flask, jsonify, make_response
+from flask import Flask
 from flask_migrate import Migrate
 from config import Config
 from db import db
@@ -32,7 +32,7 @@ errors = {
     "NotFound": {
         "status": 404,
         "message": "Not Found: The requested URL was NOT FOUND on the server. Please try again.",
-        "extra": "Make sure the request follows the following format:http://127.0.0.1:5000/vendor/<id> "
+        "extra": "Make sure the request follows the following format: http://127.0.0.1:5000/vendor/<id> "
     },
     "InternalServerError":{
         "message": "Internal Server Error: The server encountered an unexpected condition which prevented it from fulfilling the request.",

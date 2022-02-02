@@ -24,13 +24,15 @@ class AuthorModel(db.Model):
         db.session.commit()
 
     def json(self):
-        return {"data": {
+        return {"type": "author",
             "id": self.id,
             "name": self.name,
             "city": self.city,
-        }}
+        }
 
     @classmethod
     def find_by_username(self, name):
         return AuthorModel.query.filter_by(name=name).first()
         
+    def __repr__(self):
+        return f"Author: {self.name}, {self.city}"

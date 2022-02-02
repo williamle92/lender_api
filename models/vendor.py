@@ -11,7 +11,7 @@ class VendorModel(db.Model):
     __tablename__ = "vendor"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False, unique=True)
-    reviews = db.relationship('ReviewModel', backref="vendormodel", lazy="dynamic")
+    reviews = db.relationship('ReviewModel', backref="vendor", lazy="dynamic")
 
 
     def __init__(self, name):
@@ -40,3 +40,6 @@ class VendorModel(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
+
+    def __repr__(self):
+        return f"Vendor: {self.name}"
