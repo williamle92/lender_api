@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.reviews import ReviewModel
-from models.vendor import VendorModel
+from models.lender import LenderModel
 from models.author import AuthorModel
 
 
@@ -12,7 +12,7 @@ class ReviewResource(Resource):
     parser.add_argument("review_type", type=str, required=True, help="Must contain key/value (review_type) and value as a string in JSON request")
     parser.add_argument("loan_type", type=str, required=True, help="Must contain key (loan_type) and value as a string in JSON request")
     parser.add_argument("author_name", type=str, required=True, help="Must contain key (author_name) and value as a string in JSON request")
-    parser.add_argument('vendor_name', type=str, required=True, help="Must contain key(vendor_name) and value as a string in JSON request")
+    parser.add_argument('lender_name', type=str, required=True, help="Must contain key(lender_name) and value as a string in JSON request")
     parser.add_argument("date_posted", type=str, required=True, help="Must contain key(date_posted) and value as a string in JSON request")
 
     def get(self, id):
@@ -24,12 +24,12 @@ class ReviewResource(Resource):
     def post(self):
         data = ReviewResource.parser.parse_args()
         author_exist = AuthorModel.find_by_username(data["author_name"])
-        vendor_exist = VendorModel.find_by_id(id=None, name=data['vendor_name'])
+        lender_exist = LenderModel.find_by_id(id=None, name=data['lender_name'])
 
         if not author_exist:
             return {"Message": "The author in the request does not exist, please try again"}
-        if not vendor_exist:
-            return {"Message": "The vendor in the request does not exist, please try again"}
+        if not lender_exist:
+            return {"Message": "The lender in the request does not exist, please try again"}
         review = ReviewModel(**data)
         try:
             review.save_to_db()
@@ -59,7 +59,7 @@ class ReviewResource(Resource):
             review.review_type= data["review_type"]
             review.loan_type = data["loan_type"]
             review.author_name = data["author_name"]
-            review.vendor_name = data["vendor_name"]
+            review.lender_name = data["lender_name"]
 
         review.save_to_db()
         return review.json()

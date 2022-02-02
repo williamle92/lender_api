@@ -1,7 +1,7 @@
 import pytest
 from models.author import AuthorModel
 from models.reviews import ReviewModel
-from models.vendor import VendorModel
+from models.lender import VendorModel
 
 
 def test_review():

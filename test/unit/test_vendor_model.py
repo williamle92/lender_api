@@ -1,5 +1,5 @@
 import pytest
-from models.vendor import VendorModel
+from models.lender import VendorModel
 from models.reviews import ReviewModel
 
 

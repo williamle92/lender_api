@@ -2,7 +2,7 @@
 import pytest
 from models.author import AuthorModel
 from models.reviews import ReviewModel
-from models.vendor import VendorModel
+from models.lender import VendorModel
 
 # run using command python -m (for module) pytest
 def test_NewAuthor():

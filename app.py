@@ -6,7 +6,7 @@ from db import db
 from flask_restful import Api
 from resources.author import AuthorList, AuthorResource
 from resources.reviews import ReviewResource, Reviews
-from resources.vendor import Vendor, VendorList
+from resources.lender import Vendor, VendorList
 
 # Instantiate Flask app
 app = Flask(__name__)
